@@ -1,0 +1,12 @@
+version: '3'
+services:
+  poetry:
+    build: .
+    image: poetry
+    container_name: poetry_bayes
+    volumes:
+      - .:/workspace
+    tty: true # retain container up
+    environment:
+      # src配下のモジュールをノートブックからインポートできるようにするため
+      - PYTHONPATH=/workspace
