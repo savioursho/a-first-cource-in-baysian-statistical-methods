@@ -4,4 +4,6 @@
 format: jb-book
 root: index
 chapters:
-- file: notebooks/chapter03/chapter03
+- file: notebooks/chapter03/00-chapter03
+  sections:
+  - file: notebooks/chapter03/01-excercise3_1
