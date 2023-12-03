@@ -311,7 +311,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utility-functions">Utility Functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.1 標本調査</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a">a</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pr-y-1-y-1-cdots-y-100-y-100"><span class="math notranslate nohighlight">\(Pr(Y_1 = y_1, \cdots, Y_{100} = y_{100})\)</span> を簡単な形で表す</a></li>
@@ -361,6 +360,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">a</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">b</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">c</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">d</a></li>
 </ul>
 </li>
 </ul>
@@ -386,6 +386,8 @@ document.write(`
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">from</span> <span class="nn">mylib.plot</span> <span class="kn">import</span> <span class="n">contourplot</span>
 
 <span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">()</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
@@ -393,58 +395,6 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="utility-functions">
-<h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">contourplot</span><span class="p">(</span>
-    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
-    <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">y</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">z</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<span class="p">):</span>
-    <span class="c1"># 横持ちにする</span>
-    <span class="n">df_z</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">])[</span><span class="n">z</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
-
-    <span class="c1"># matplotlibの入力の形にする</span>
-    <span class="n">x_unique</span> <span class="o">=</span> <span class="n">df_z</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
-    <span class="n">y_unique</span> <span class="o">=</span> <span class="n">df_z</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
-    <span class="n">z_matrix</span> <span class="o">=</span> <span class="n">df_z</span><span class="o">.</span><span class="n">values</span>
-
-    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-
-    <span class="c1"># 等高線を描画</span>
-    <span class="n">cs</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span>
-        <span class="n">x_unique</span><span class="p">,</span>
-        <span class="n">y_unique</span><span class="p">,</span>
-        <span class="n">z_matrix</span><span class="p">,</span>
-        <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="c1"># 線に数字を載せる</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span>
-        <span class="n">cs</span><span class="p">,</span>
-        <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="c1"># 色を付ける</span>
-    <span class="n">cs</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span>
-        <span class="n">x_unique</span><span class="p">,</span>
-        <span class="n">y_unique</span><span class="p">,</span>
-        <span class="n">z_matrix</span><span class="p">,</span>
-        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="c1"># カラーバーを追加</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span>
-    <span class="c1"># ラベルを追加</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
-        <span class="n">xlabel</span><span class="o">=</span><span class="n">x</span><span class="p">,</span>
-        <span class="n">ylabel</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
-        <span class="n">title</span><span class="o">=</span><span class="n">z</span><span class="p">,</span>
-    <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="id2">
 <h2>3.1 標本調査<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
@@ -2792,6 +2742,40 @@ p(\theta | y_1, \cdots, y_n)
 </section>
 <section id="id24">
 <h3>c<a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h3>
+<p>比を計算する。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+p(\theta _a | y_1, \cdots, y_n) / p(\theta _b | y_1, \cdots, y_n)
+&amp;= \frac{
+    \theta^{2a(n_0 + n)}_{a} e^{-(n_0 t_0 + n \bar{t}) \theta^{2}_{a}}
+}{
+    \theta^{2a(n_0 + n)}_{b} e^{-(n_0 t_0 + n \bar{t}) \theta^{2}_{b}}
+} \\
+&amp;= \left( 
+    \frac{\theta_{a}}{\theta_{b}}
+\right) ^{2a(n_0 + n)}
+\exp\left\{{-(n_0 t_0 + n \bar{t}) (\theta^{2}_{a}-\theta^{2}_{b}) }
+\right\}
+\end{aligned}
+\end{split}\]</div>
+<p>これは <span class="math notranslate nohighlight">\(n\bar{t} = \sum_{i} y^{2}_{i}\)</span> の関数であるから、十分統計量は <span class="math notranslate nohighlight">\(\sum_{i} y^{2}_{i}\)</span> である。</p>
+</section>
+<section id="id25">
+<h3>d<a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(\theta\)</span> の事後分布は <span class="math notranslate nohighlight">\(\text{Galenshore}(a(n_0 + n) + 1/2, \sqrt{n_0 t_0 + n \bar{t}})\)</span>
+であるから、</p>
+<div class="math notranslate nohighlight">
+\[
+E[\theta|y_1, \cdots, y_n]
+= \frac{
+    \Gamma \left( a(n_0 + n) + 1\right)
+}{
+    \Gamma \left( a(n_0 + n) + 1/2 \right)
+    \sqrt{n_0 t_0 + n \bar{t}}
+}
+\]</div>
+<p>となる。</p>
 </section>
 </section>
 </section>
@@ -2850,7 +2834,6 @@ p(\theta | y_1, \cdots, y_n)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utility-functions">Utility Functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.1 標本調査</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a">a</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pr-y-1-y-1-cdots-y-100-y-100"><span class="math notranslate nohighlight">\(Pr(Y_1 = y_1, \cdots, Y_{100} = y_{100})\)</span> を簡単な形で表す</a></li>
@@ -2900,6 +2883,7 @@ p(\theta | y_1, \cdots, y_n)
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">a</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">b</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">c</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">d</a></li>
 </ul>
 </li>
 </ul>
