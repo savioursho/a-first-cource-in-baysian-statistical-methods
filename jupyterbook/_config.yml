@@ -2,5 +2,8 @@ title: 標準ベイズ統計学 演習問題
 author: Saviour
 exclude_patterns: [jupyterbook/_build, README.md]
 
+html:
+  favicon: jupyterbook/favicon.ico
+
 execute:
   execute_notebooks: cache
