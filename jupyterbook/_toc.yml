@@ -7,3 +7,4 @@ chapters:
 - file: notebooks/chapter03/00-chapter03
   sections:
   - file: notebooks/chapter03/01-excercise3_1
+  - file: notebooks/chapter03/02-excercise3_2
