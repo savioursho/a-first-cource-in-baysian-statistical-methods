@@ -1,0 +1,1318 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>3.4 ベータ事前分布の混合 &#8212; 標準ベイズ統計学 演習問題</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/chapter03/04-excercise3_4';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3.5" href="05-excercise3_5.html" />
+    <link rel="prev" title="3.3 腫瘍数" href="03-excercise3_3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">標準ベイズ統計学 演習問題</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    A First Course in Bayesian Statistical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="00-chapter03.html">第3章 二項モデルとポアソンモデル</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01-excercise3_1.html">3.1 標本調査</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-excercise3_2.html">3.2 感度分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-excercise3_3.html">3.3 腫瘍数</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.4 ベータ事前分布の混合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-excercise3_5.html">3.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06-excercise3_6.html">3.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07-excercise3_7.html">3.7 事後予測</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-excercise3_8.html">3.8 コイン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-excercise3_9.html">3.9 Galenshore分布</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/chapter03/04-excercise3_4.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>3.4 ベータ事前分布の混合</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a">a</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b">b</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c">c</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d">d</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i">i</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ii">ii</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iii">iii</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e">e</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">参考: ベータ関数のプロット</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>3.4 ベータ事前分布の混合<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">special</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span>
+<span class="kn">from</span> <span class="nn">mylib.plot</span> <span class="kn">import</span> <span class="n">contourplot</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">()</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 36カ月以内に投獄から解放された人数</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">43</span>
+
+<span class="c1"># 再犯者の人数</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">15</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="a">
+<h2>a<a class="headerlink" href="#a" title="Permalink to this heading">#</a></h2>
+<p>それぞれの分布は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+p(\theta) &amp;= dbeta(\theta, a=2, b=8) \\
+p(y|\theta) &amp;= dbinom(y, n, \theta) \\
+p(\theta| y) &amp;= dbeta(\theta, a + y, b + n - y) \\
+\end{aligned}
+\end{split}\]</div>
+<p>である。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">construct_df_3_4</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">df_3_4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+    <span class="c1"># 1~0のthetaの値を作成</span>
+    <span class="n">n_points</span> <span class="o">=</span> <span class="mi">200</span>
+    <span class="n">df_3_4</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_points</span><span class="p">)</span>
+
+    <span class="c1"># 事前分布</span>
+    <span class="n">df_3_4</span><span class="p">[</span><span class="s2">&quot;prior&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">df_3_4</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">],</span> <span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">)</span>
+
+    <span class="c1"># 尤度</span>
+    <span class="n">df_3_4</span><span class="p">[</span><span class="s2">&quot;likelihood&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">df_3_4</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">])</span>
+
+    <span class="c1"># 事後分布</span>
+    <span class="n">df_3_4</span><span class="p">[</span><span class="s2">&quot;posterior&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">df_3_4</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">],</span> <span class="n">a</span><span class="o">=</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">y</span><span class="p">),</span> <span class="n">b</span><span class="o">=</span><span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="n">n</span> <span class="o">-</span> <span class="n">y</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">df_3_4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_3_4</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">mosaic</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s2">&quot;prior&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;likelihood&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;posterior&quot;</span><span class="p">],</span>
+    <span class="p">]</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot_mosaic</span><span class="p">(</span><span class="n">mosaic</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+    <span class="c1"># 事前分布</span>
+    <span class="n">axes</span><span class="p">[</span><span class="s2">&quot;prior&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Prior&quot;</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">,</span>
+        <span class="n">x</span><span class="o">=</span><span class="s2">&quot;theta&quot;</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="s2">&quot;prior&quot;</span><span class="p">,</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="s2">&quot;prior&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="c1"># 尤度</span>
+    <span class="n">axes</span><span class="p">[</span><span class="s2">&quot;likelihood&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Likelihood&quot;</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">,</span>
+        <span class="n">x</span><span class="o">=</span><span class="s2">&quot;theta&quot;</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="s2">&quot;likelihood&quot;</span><span class="p">,</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="s2">&quot;likelihood&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="c1"># 事後分布</span>
+    <span class="n">axes</span><span class="p">[</span><span class="s2">&quot;posterior&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Posterior&quot;</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">,</span>
+        <span class="n">x</span><span class="o">=</span><span class="s2">&quot;theta&quot;</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="s2">&quot;posterior&quot;</span><span class="p">,</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="s2">&quot;posterior&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">summarise_binom_beta</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">print_results</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="c1"># 結果を保存する辞書</span>
+    <span class="n">results_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># 事後分布のパラメータ</span>
+    <span class="n">a_posterior</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="n">b_posterior</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">n</span> <span class="o">-</span> <span class="n">y</span>
+    <span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;a_posterior&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_posterior</span>
+    <span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;b_posterior&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">b_posterior</span>
+
+    <span class="c1"># 事後平均, 事後分散</span>
+    <span class="n">posterior_mean</span><span class="p">,</span> <span class="n">posterior_var</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span>
+        <span class="n">a</span><span class="o">=</span><span class="n">a_posterior</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b_posterior</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s2">&quot;mv&quot;</span>
+    <span class="p">)</span>
+    <span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;posterior_mean&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">posterior_mean</span>
+    <span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;posterior_var&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">posterior_var</span>
+    <span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;posterior_std&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">posterior_var</span><span class="p">)</span>
+
+    <span class="c1"># 事後モード</span>
+    <span class="n">posterior_mode</span> <span class="o">=</span> <span class="p">(</span><span class="n">a_posterior</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">a_posterior</span> <span class="o">+</span> <span class="n">b_posterior</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;posterior_mode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">posterior_mode</span>
+
+    <span class="c1"># 信用区間</span>
+    <span class="n">credible_interval</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span>
+        <span class="n">confidence</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">a_posterior</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b_posterior</span>
+    <span class="p">)</span>
+    <span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;credible_interval&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">credible_interval</span>
+
+    <span class="k">if</span> <span class="n">print_results</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;Posterior Distributiion:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> beta(</span><span class="si">{</span><span class="n">a_posterior</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">b_posterior</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+            <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Posterior Mean:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> </span><span class="si">{</span><span class="n">posterior_mean</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Posterior Variance:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> </span><span class="si">{</span><span class="n">posterior_var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Posterior Mode:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> </span><span class="si">{</span><span class="n">posterior_mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;95% Credible Interval:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> </span><span class="si">{</span><span class="n">credible_interval</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">results_dict</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 事前分布のパラメータ</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span>
+
+<span class="n">df_3_4_a</span> <span class="o">=</span> <span class="n">construct_df_3_4</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">df_3_4_a</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>theta</th>
+      <th>prior</th>
+      <th>likelihood</th>
+      <th>posterior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.005025</td>
+      <td>0.349272</td>
+      <td>4.329615e-24</td>
+      <td>5.170957e-23</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.010050</td>
+      <td>0.674220</td>
+      <td>1.231199e-19</td>
+      <td>2.838488e-18</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.015075</td>
+      <td>0.975937</td>
+      <td>4.675335e-17</td>
+      <td>1.560242e-15</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.020101</td>
+      <td>1.255481</td>
+      <td>3.031747e-15</td>
+      <td>1.301549e-13</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_3_4</span><span class="p">(</span><span class="n">df_3_4_a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dff06b6522051662624258d82bebe8384a88963622c33d6ff59e958fb9706bce.png" src="../../_images/dff06b6522051662624258d82bebe8384a88963622c33d6ff59e958fb9706bce.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_a</span> <span class="o">=</span> <span class="n">summarise_binom_beta</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">print_results</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Posterior Distributiion:
+ 	 beta(17, 36)
+Posterior Mean:
+ 	 0.32075471698113206
+Posterior Variance:
+ 	 0.004034650528064555
+Posterior Mode:
+ 	 0.3137254901960784
+95% Credible Interval:
+ 	 (0.2032977878191033, 0.4510239822166316)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="b">
+<h2>b<a class="headerlink" href="#b" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 事前分布のパラメータ</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span>
+
+<span class="n">df_3_4_b</span> <span class="o">=</span> <span class="n">construct_df_3_4</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">df_3_4_b</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>theta</th>
+      <th>prior</th>
+      <th>likelihood</th>
+      <th>posterior</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.005025</td>
+      <td>5.796597e-15</td>
+      <td>4.329615e-24</td>
+      <td>1.866924e-35</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.010050</td>
+      <td>7.382171e-13</td>
+      <td>1.231199e-19</td>
+      <td>6.761087e-29</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.015075</td>
+      <td>1.254910e-11</td>
+      <td>4.675335e-17</td>
+      <td>4.364452e-25</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.020101</td>
+      <td>9.353248e-11</td>
+      <td>3.031747e-15</td>
+      <td>2.109403e-22</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plot_3_4</span><span class="p">(</span><span class="n">df_3_4_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/191fc0765cc0ae0987fb591e00343167a2ebf3ab9540d9ef995f116a4ef521a2.png" src="../../_images/191fc0765cc0ae0987fb591e00343167a2ebf3ab9540d9ef995f116a4ef521a2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_b</span> <span class="o">=</span> <span class="n">summarise_binom_beta</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">print_results</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Posterior Distributiion:
+ 	 beta(23, 30)
+Posterior Mean:
+ 	 0.4339622641509434
+Posterior Variance:
+ 	 0.0045488706934061155
+Posterior Mode:
+ 	 0.43137254901960786
+95% Credible Interval:
+ 	 (0.30469562471174694, 0.567952795996458)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="c">
+<h2>c<a class="headerlink" href="#c" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_3_4_c</span> <span class="o">=</span> <span class="n">df_3_4_a</span><span class="p">[[</span><span class="s2">&quot;theta&quot;</span><span class="p">,</span> <span class="s2">&quot;prior&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_3_4_c</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;prior&quot;</span><span class="p">:</span> <span class="s2">&quot;prior_a&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">df_3_4_c</span><span class="p">[</span><span class="s2">&quot;prior_b&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_3_4_b</span><span class="p">[</span><span class="s2">&quot;prior&quot;</span><span class="p">]</span>
+
+<span class="n">df_3_4_c</span><span class="p">[</span><span class="s2">&quot;prior_c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="n">df_3_4_a</span><span class="p">[</span><span class="s2">&quot;prior&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="n">df_3_4_b</span><span class="p">[</span><span class="s2">&quot;prior&quot;</span><span class="p">]</span>
+
+<span class="n">df_3_4_c</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>theta</th>
+      <th>prior_a</th>
+      <th>prior_b</th>
+      <th>prior_c</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000e+00</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.005025</td>
+      <td>0.349272</td>
+      <td>5.796597e-15</td>
+      <td>0.261954</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.010050</td>
+      <td>0.674220</td>
+      <td>7.382171e-13</td>
+      <td>0.505665</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.015075</td>
+      <td>0.975937</td>
+      <td>1.254910e-11</td>
+      <td>0.731953</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.020101</td>
+      <td>1.255481</td>
+      <td>9.353248e-11</td>
+      <td>0.941611</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">df_3_4_c</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="s2">&quot;theta&quot;</span><span class="p">),</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;theta&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
+    <span class="n">row</span><span class="o">=</span><span class="s2">&quot;variable&quot;</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># タイトルを編集</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;beta(2, 8)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;beta(8, 2)&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;$\frac</span><span class="si">{3}{4}</span><span class="s2">$beta(2, 8) + $\frac</span><span class="si">{1}{4}</span><span class="s2">$beta(8, 2)&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="p">[</span><span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span> <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">title</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">titles</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8c91553f8fd2d2e4e15edb41110e9b180a14d739f1929420ab9131513e122ffd.png" src="../../_images/8c91553f8fd2d2e4e15edb41110e9b180a14d739f1929420ab9131513e122ffd.png" />
+</div>
+</div>
+<p>cの事前分布は <span class="math notranslate nohighlight">\(\theta \approx 0.1\)</span> に大きいピークと <span class="math notranslate nohighlight">\(\theta \approx 0.9\)</span> に小さいピークを持つ。<br />
+これは、投獄から解放された人が75%ほどの再犯率の低いグループと25%ほどの再犯率の高いグループから構成されるという事前情報を表している。</p>
+</section>
+<section id="d">
+<h2>d<a class="headerlink" href="#d" title="Permalink to this heading">#</a></h2>
+<section id="i">
+<h3>i<a class="headerlink" href="#i" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+p(\theta) \times p(y | \theta)
+&amp;= \frac{1}{4} 
+\frac{\Gamma(10)}{\Gamma(2)\Gamma(8)}
+[3\theta(1 - \theta)^{7} + \theta^{7}(1 - \theta)]
+\times
+\binom{n}{y}
+\theta^{y}(1 - \theta)^{n - y}
+\\
+&amp;= 
+\frac{\Gamma(10)}{\Gamma(2)\Gamma(8)}
+\binom{n}{y}
+\times
+\left[
+\frac{3}{4} \theta^{y + 1} (1 - \theta)^{n - y + 7}
++ \frac{1}{4} \theta^{y + 7} (1 - \theta)^{n - y + 1}
+\right]
+\\
+&amp;=
+\left[
+3 \theta^{y + 1} (1 - \theta)^{n - y + 7}
++ \theta^{y + 7} (1 - \theta)^{n - y + 1}
+\right] \times const.
+\\
+&amp;=
+\left[
+3 \theta^{16} (1 - \theta)^{35}
++ \theta^{22} (1 - \theta)^{29}
+\right] \times const.
+\end{aligned}
+\end{split}\]</div>
+</section>
+<section id="ii">
+<h3>ii<a class="headerlink" href="#ii" title="Permalink to this heading">#</a></h3>
+<p>事後分布は
+<span class="math notranslate nohighlight">\( p(\theta | y) \propto p(\theta) \times p(y | \theta) \)</span>
+であることと、 <span class="math notranslate nohighlight">\(\int d\theta ~ p(\theta | y) = 1\)</span> であることから計算できる。</p>
+<p>まず、正規化定数を計算する。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+1 &amp;= \int d\theta ~ p(\theta | y) \\
+&amp;= 
+\int d\theta ~ 
+\left[
+3 \theta^{16} (1 - \theta)^{35}
++ \theta^{22} (1 - \theta)^{29}
+\right] \times const.
+\\
+&amp;=
+\left[
+ 3 B(17, 36) + B(23, 30)
+\right] \times const.
+\end{aligned}
+\end{split}\]</div>
+<p>この計算から</p>
+<div class="math notranslate nohighlight">
+\[
+const. = \frac{1}{3 B(17, 36) + B(23, 30)}
+\]</div>
+<p>となる。</p>
+<p>以上の結果から、事後分布は次のようになる。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+p(\theta | y) &amp;= 
+\frac{1}{3 B(17, 36) + B(23, 30)} 
+\left[
+3 \theta^{16} (1 - \theta)^{35}
++ \theta^{22} (1 - \theta)^{29}
+\right]
+\\
+&amp;= 
+\frac{3 B(17, 36)}{3 B(17, 36) + B(23, 30)} 
+\frac{1}{B(17, 36)}
+\theta^{16} (1 - \theta)^{35}
+\\
+&amp;\quad +
+\frac{B(23, 30)}{3 B(17, 36) + B(23, 30)} 
+\frac{1}{B(23, 30)}
+\theta^{22} (1 - \theta)^{29}
+\\
+&amp;= 
+\frac{3 B(17, 36)}{3 B(17, 36) + B(23, 30)} 
+\times
+dbeta(\theta, 17, 36)
+\\
+&amp;\quad +
+\frac{B(23, 30)}{3 B(17, 36) + B(23, 30)} 
+\times
+dbeta(\theta, 23, 30)
+\end{aligned}
+\end{split}\]</div>
+</section>
+<section id="iii">
+<h3>iii<a class="headerlink" href="#iii" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_3_4_c</span><span class="p">[</span><span class="s2">&quot;prior_c_x_likelihood&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_3_4_c</span><span class="p">[</span><span class="s2">&quot;prior_c&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df_3_4_a</span><span class="p">[</span><span class="s2">&quot;likelihood&quot;</span><span class="p">]</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">df_3_4_c</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;theta&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;prior_c_x_likelihood&quot;</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2e02a370b53c3285539aa7fe1875a86157abdd01f6f4eb356bd14df4c0be8365.png" src="../../_images/2e02a370b53c3285539aa7fe1875a86157abdd01f6f4eb356bd14df4c0be8365.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 事後モード</span>
+<span class="p">(</span><span class="n">ind</span><span class="p">,)</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">argrelmax</span><span class="p">(</span><span class="n">df_3_4_c</span><span class="p">[</span><span class="s2">&quot;prior_c_x_likelihood&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">posterior_mode</span> <span class="o">=</span> <span class="n">df_3_4_c</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">,</span> <span class="s2">&quot;prior_c_x_likelihood&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span>
+    <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span>
+<span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">posterior_mode</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;theta&#39;: 0.3165829145728643, &#39;prior_c_x_likelihood&#39;: 0.13681439196814513}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">beta_mode</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_a</span><span class="p">[</span><span class="s2">&quot;posterior_mode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta_mode</span><span class="p">(</span>
+    <span class="n">results_a</span><span class="p">[</span><span class="s2">&quot;a_posterior&quot;</span><span class="p">],</span>
+    <span class="n">results_a</span><span class="p">[</span><span class="s2">&quot;b_posterior&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">results_b</span><span class="p">[</span><span class="s2">&quot;posterior_mode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">beta_mode</span><span class="p">(</span>
+    <span class="n">results_b</span><span class="p">[</span><span class="s2">&quot;a_posterior&quot;</span><span class="p">],</span>
+    <span class="n">results_b</span><span class="p">[</span><span class="s2">&quot;b_posterior&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;aの結果&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">results_a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bの結果&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">results_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aの結果
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;a_posterior&#39;: 17,
+ &#39;b_posterior&#39;: 36,
+ &#39;posterior_mean&#39;: 0.32075471698113206,
+ &#39;posterior_var&#39;: 0.004034650528064555,
+ &#39;posterior_std&#39;: 0.0635188989834093,
+ &#39;posterior_mode&#39;: 0.3137254901960784,
+ &#39;credible_interval&#39;: (0.2032977878191033, 0.4510239822166316)}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bの結果
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;a_posterior&#39;: 23,
+ &#39;b_posterior&#39;: 30,
+ &#39;posterior_mean&#39;: 0.4339622641509434,
+ &#39;posterior_var&#39;: 0.0045488706934061155,
+ &#39;posterior_std&#39;: 0.06744531631926798,
+ &#39;posterior_mode&#39;: 0.43137254901960786,
+ &#39;credible_interval&#39;: (0.30469562471174694, 0.567952795996458)}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_3_4_d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]),</span>
+    <span class="n">data</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;prior&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;beta(2, 8)&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;beta(8, 2)&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;3/4 beta(2, 8) + 1/4 beta(8, 2)&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;posterior_mode&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="n">results_a</span><span class="p">[</span><span class="s2">&quot;posterior_mode&quot;</span><span class="p">],</span>
+            <span class="n">results_b</span><span class="p">[</span><span class="s2">&quot;posterior_mode&quot;</span><span class="p">],</span>
+            <span class="n">posterior_mode</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">],</span>
+        <span class="p">],</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+
+<span class="n">df_3_4_d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>prior</th>
+      <th>posterior_mode</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <td>beta(2, 8)</td>
+      <td>0.313725</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>beta(8, 2)</td>
+      <td>0.431373</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>3/4 beta(2, 8) + 1/4 beta(8, 2)</td>
+      <td>0.316583</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>上記の結果から事後モードは</p>
+<div class="math notranslate nohighlight">
+\[
+a \lesssim c &lt; b
+\]</div>
+</section>
+</section>
+<section id="e">
+<h2>e<a class="headerlink" href="#e" title="Permalink to this heading">#</a></h2>
+<p>以下の事前分布を考える</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+p(\theta) 
+&amp;= \sum _{i=1}^{k} w_{i} \times dbeta(\theta, a_{i}, b_{i})
+\\
+&amp; \quad where \quad 
+\sum _{i=1}^{k} w_{i} = 1
+\end{aligned}
+\end{split}\]</div>
+<p>このとき、 d) ii.と同様の計算から事後分布は</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{aligned}
+p(\theta | y) &amp;= 
+\sum _{i=1}^{k}
+\tilde{w}_{i}
+\times
+dbeta(\theta, a_{i} + y, b_{i} + n - y)
+\end{aligned}
+\]</div>
+<p>となる。
+ここで、 <span class="math notranslate nohighlight">\(\tilde{w}_{i}\)</span> は事後分布の重みで、</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{w}_{i} = 
+\frac{w_{i} B(a_{i} + y, b_{i} + n - y) / B(a_{i}, b_{i})}{\sum_{j=1}^{k} w_{j} B(a_{j} + y, b_{j} + n - y) / B(a_{j}, b_{j})} 
+\]</div>
+<p>である。 ベータ関数の対称性(<span class="math notranslate nohighlight">\(B(a, b) = B(b, a)\)</span>)から、<span class="math notranslate nohighlight">\(a + b\)</span> が一定のとき <span class="math notranslate nohighlight">\(\tilde{w}_{i}\)</span> の <span class="math notranslate nohighlight">\(B(a_{i}, b_{i})\)</span> の部分は分母分子でキャンセルする。(d.ii.で計算したパターン)</p>
+<p>以上の結果から、事前分布で <span class="math notranslate nohighlight">\(w_{i} \times dbeta(a_{i}, b_{i})\)</span> に対応する事後分布の成分は、 <span class="math notranslate nohighlight">\(w_{i} B(a_{i} + y, b_{i} + n - y) / B(a_{i} , b_{i})\)</span> に比例する大きさの重みをもつ。
+これは以下のように解釈することができる。</p>
+<ul class="simple">
+<li><p><strong>解釈1</strong>: 事前分布で重視されている成分は事後分布でも重視される</p>
+<ul>
+<li><p>事後分布も事前分布の重み <span class="math notranslate nohighlight">\(w_{i}\)</span> に比例するため</p></li>
+</ul>
+</li>
+<li><p><strong>解釈2</strong>: 信念が強い事前分布ほど重視する</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(a_{i} + b_{i}\)</span> が大きいほど <span class="math notranslate nohighlight">\(1/B(a_{i}, b_{i})\)</span> が大きくなるため (下記ベータ関数のプロット参照)</p></li>
+<li><p><span class="math notranslate nohighlight">\(a_{i} + b_{i}\)</span> が事前のサンプルサイズに対応することに注意</p></li>
+</ul>
+</li>
+<li><p><strong>解釈3</strong>: 極端な値をとる事前分布ほど重視する</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(a_{i} + b_{i}\)</span> が一定のとき、分子の <span class="math notranslate nohighlight">\(B(a_{i} + y, b_{i} + n - y)\)</span> で差がつく</p></li>
+<li><p>さらに<span class="math notranslate nohighlight">\(a + b\)</span> が一定のとき、 <span class="math notranslate nohighlight">\(B(a, b)\)</span> は <span class="math notranslate nohighlight">\(|a - b|\)</span> が大きいほど(事前平均が極端な値をとるほど)大きくなる(下記ベータ関数のプロット参照)</p></li>
+</ul>
+</li>
+</ul>
+<section id="id2">
+<h3>参考: ベータ関数のプロット<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>ベータ関数をプロットしてみる</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_beta_func</span><span class="p">(</span><span class="n">a_b_range</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">):</span>
+    <span class="n">a_mesh</span><span class="p">,</span> <span class="n">b_mesh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">a_b_range</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">a_b_range</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">df_beta_func</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="n">a_mesh</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="n">b_mesh</span><span class="o">.</span><span class="n">ravel</span><span class="p">()})</span>
+    <span class="n">df_beta_func</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span>
+        <span class="n">df_beta_func</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="n">df_beta_func</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">contourplot</span><span class="p">(</span><span class="n">df_beta_func</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="s2">&quot;beta&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_beta_func</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8784db65e6d55ca6ccad01f5f56ecb718a0e1bcc17258e5f0bdac09a64b39b5b.png" src="../../_images/8784db65e6d55ca6ccad01f5f56ecb718a0e1bcc17258e5f0bdac09a64b39b5b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_beta_func</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4de8aa2d54e6e6236f9afd54ab4b008a4a82540084ed0b34cb97e0ea32d3e681.png" src="../../_images/4de8aa2d54e6e6236f9afd54ab4b008a4a82540084ed0b34cb97e0ea32d3e681.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks/chapter03"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03-excercise3_3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">3.3 腫瘍数</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05-excercise3_5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3.5</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a">a</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b">b</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c">c</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d">d</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i">i</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ii">ii</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iii">iii</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e">e</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">参考: ベータ関数のプロット</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Saviour
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
