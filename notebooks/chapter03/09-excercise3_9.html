@@ -326,6 +326,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b">b</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c">c</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d">d</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e">e</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#galenshoregamma">参考: Galenshore分布とGamma分布</a></li>
 </ul>
             </nav>
         </div>
@@ -353,9 +355,9 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Galenshore(<span class="math notranslate nohighlight">\(a, \theta\)</span>)</p>
-<div class="math notranslate nohighlight">
-\[
+<p><span class="math notranslate nohighlight">\(\text{Galenshore}(a, \theta)\)</span></p>
+<div class="math notranslate nohighlight" id="equation-eq-galenshore">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-galenshore" title="Permalink to this equation">#</a></span>\[
 p(y) 
 = \frac{2}{\Gamma(a)}
 \theta ^{2a} y^{2a-1} e^{-\theta^2 y^2}
@@ -380,7 +382,7 @@ t(y) &amp;= y^2 \\
 p(\theta | n_0, t_0)
 &amp;= \kappa(n_0, t_0) \theta^{2a n_0} e^{- n_0 t_0 \theta^2}
 \\
-&amp;= \frac{2}{\Gamma(a n_0 + 1/2)} (n_0 t_0)^{a} \theta^{2a n_0} e^{- n_0 t_0 \theta^2}
+&amp;= \frac{2}{\Gamma(a n_0 + 1/2)} (n_0 t_0)^{a n_0 + 1/2} \theta^{2a n_0} e^{- n_0 t_0 \theta^2}
 \end{aligned}
 \end{split}\]</div>
 <p>となることがわかり、これはGalenshore分布 <span class="math notranslate nohighlight">\(\text{Galenshore} (a n_0 + 1/2, \sqrt{n_0 t_0})\)</span>である。</p>
@@ -517,7 +519,7 @@ p(\theta | n_0, t_0)
 \begin{aligned}
 p(\theta | y_1, \cdots, y_n)
 &amp;= p(\theta | n_0 + n, (n_0 t_0 + n \bar{t})/(n_0 + n)) \\
-&amp;= \frac{2}{\Gamma(a (n_0 + n) + 1/2)} (n_0 t_0 + n \bar{t})^{a} \theta^{2a (n_0 + n)} e^{- (n_0 t_0 + n \bar{t}) \theta^2}
+&amp;= \frac{2}{\Gamma(a (n_0 + n) + 1/2)} (n_0 t_0 + n \bar{t})^{a(n_0+n) + 1/2} \theta^{2a (n_0 + n)} e^{- (n_0 t_0 + n \bar{t}) \theta^2}
 \\ \\
 &amp; \qquad \text{where} \quad \bar{t} = \sum _i y^{2} _{i}
 \end{aligned}
@@ -560,6 +562,109 @@ E[\theta|y_1, \cdots, y_n]
 }
 \]</div>
 <p>となる。</p>
+</section>
+<section id="e">
+<h2>e<a class="headerlink" href="#e" title="Permalink to this heading">#</a></h2>
+<p>予測分布は以下のように計算できる。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+p(\tilde{y}|y_1, \cdots, y_n)
+% 1個目の等号
+&amp;= \int d\theta ~ p(\tilde{y}| \theta) ~ p(\theta | y_1, \cdots, y_n)
+\\
+% 2個目の等号
+&amp;= \int d\theta
+\frac{2}{\Gamma(a)}
+~ \theta ^{2a} \tilde{y}^{2a-1} e^{-\theta^2 \tilde{y}^2}
+\\
+&amp; \qquad \times \frac{2}{\Gamma(a (n_0 + n) + 1/2)} (n_0 t_0 + n \bar{t})^{a(n_0+n) + 1/2} \theta^{2a (n_0 + n)} e^{- (n_0 t_0 + n \bar{t}) \theta^2}
+\\
+% 3個目の等号
+&amp;= \int d\theta 
+\frac{4}{\Gamma(a)\Gamma(a(n_0 + n) + 1/2)}
+(n_0 t_0 + n \bar{t} + \tilde{y}^2)^{a(n_0 + n + 1) + 1/2} 
+\theta ^{2a(n_0 + n + 1)}
+e^{-(n_0 t_0 + n \bar{t} + \tilde{y}^2) \theta^2}
+\\
+% 4個目の等号
+&amp;=\frac{2 \Gamma(a(n_0 + n + 1) + 1/2)}{\Gamma(a)\Gamma(a(n_0 + n) + 1/2)}
+\frac{
+    (n_0 t_0 + n \bar{t})^{a(n_0 + n) + 1/2} 
+}{
+    (n_0 t_0 + n \bar{t} + \tilde{y}^2)^{a(n_0 + n + 1) + 1/2} 
+}
+\tilde{y}^{2a-1}
+\\
+&amp; \qquad \times
+\int d \theta
+\underbrace{
+    \frac{2}{\Gamma(a(n_0 + n + 1) + 1/2)}
+    (n_0 t_0 + n \bar{t} + \tilde{y}^2)^{a(n_0 + n + 1) + 1/2} 
+    \theta ^{2a(n_0 + n + 1)}
+    e^{-(n_0 t_0 + n \bar{t} + \tilde{y}^2) \theta^2}
+}_{\text{Galenshore分布の密度関数だから積分したら1}}
+\\
+% 5個目の等号
+&amp;=
+\frac{2}{
+    B(a, a(n_0 + n) + 1/2)
+}
+\frac{
+    (n_0 t_0 + n \bar{t})^{a(n_0 + n) + 1/2} 
+}{
+    (n_0 t_0 + n \bar{t} + \tilde{y}^2)^{a(n_0 + n + 1) + 1/2} 
+}
+\tilde{y}^{2a-1}
+\\
+% 6個目の等号
+&amp;=
+\frac{
+    2
+    \left( 
+        \frac{\tilde{y}}{{\sqrt{n_0 t_0 + n \bar{t}}}} 
+        \right) ^{2a -1}
+    \left[ 1 + \left( \frac{\tilde{y}}{{\sqrt{n_0 t_0 + n \bar{t}}}}\right) ^ {2} \right]
+    ^{-a -[a(n_0 + n) + 1/2]}
+}{
+    \sqrt{n_0 t_0 + n \bar{t}}
+    B(a, a(n_0 + n) + 1/2)
+}
+\end{aligned}
+\end{split}\]</div>
+<p>これはパラメータが</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+\alpha = a \\
+\beta = a(n_0 + n) + 1/2 \\
+p = 2 \\
+q = \sqrt{n_0 t_0 + n \bar{t}}
+\end{cases}
+\end{split}\]</div>
+<p>の<a class="reference external" href="https://ja.wikipedia.org/wiki/%E7%AC%AC2%E7%A8%AE%E3%83%99%E3%83%BC%E3%82%BF%E5%88%86%E5%B8%83#%E4%B8%80%E8%88%AC%E5%8C%96%E7%AC%AC2%E7%A8%AE%E3%83%99%E3%83%BC%E3%82%BF%E5%88%86%E5%B8%83">一般化第2種ベータ分布</a>である。</p>
+</section>
+<section id="galenshoregamma">
+<h2>参考: Galenshore分布とGamma分布<a class="headerlink" href="#galenshoregamma" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\text{Galenshore}(a, \theta)\)</span> の密度関数 <a class="reference internal" href="#equation-eq-galenshore">(1)</a> を <span class="math notranslate nohighlight">\(y^2 = z\)</span> と変数変換してみる。<br />
+変数変換した後の変数 <span class="math notranslate nohighlight">\(z\)</span> の密度関数 <span class="math notranslate nohighlight">\(p_{Z}(z)\)</span> は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+p_{Z}(z)
+&amp;= p(y(z)) \left|\frac{dy}{dz}\right|
+\\
+&amp;= 
+\frac{2}{\Gamma(a)}
+\theta ^{2a} z^{a-1/2} e^{-\theta^2 z}
+\times  \frac{1}{2} z^{-1/2}
+\\
+&amp;= 
+\frac{(\theta^2) ^{a}}{\Gamma(a)}
+ z^{a-1} e^{-\theta^2 z}
+\end{aligned}
+\end{split}\]</div>
+<p>となる。これはパラメータ <span class="math notranslate nohighlight">\(a=a, b=\theta^2\)</span> のGamma分布 <span class="math notranslate nohighlight">\(\text{Gamma} (a, \theta^2)\)</span></p>
 </section>
 </section>
 
@@ -621,6 +726,8 @@ E[\theta|y_1, \cdots, y_n]
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b">b</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c">c</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d">d</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e">e</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#galenshoregamma">参考: Galenshore分布とGamma分布</a></li>
 </ul>
   </nav></div>
 
