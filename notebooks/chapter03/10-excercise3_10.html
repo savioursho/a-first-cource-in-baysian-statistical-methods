@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>3.9 Galenshore分布 &#8212; 標準ベイズ統計学 演習問題</title>
+    <title>3.10 変数変換 &#8212; 標準ベイズ統計学 演習問題</title>
   
   
   
@@ -64,12 +64,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/chapter03/09-excercise3_9';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/chapter03/10-excercise3_10';</script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3.10 変数変換" href="10-excercise3_10.html" />
-    <link rel="prev" title="3.8 コイン" href="08-excercise3_8.html" />
+    <link rel="prev" title="3.9 Galenshore分布" href="09-excercise3_9.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,8 +173,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="06-excercise3_6.html">3.6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="07-excercise3_7.html">3.7 事後予測</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08-excercise3_8.html">3.8 コイン</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.9 Galenshore分布</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10-excercise3_10.html">3.10 変数変換</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-excercise3_9.html">3.9 Galenshore分布</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.10 変数変換</a></li>
 </ul>
 </li>
 </ul>
@@ -232,7 +231,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/notebooks/chapter03/09-excercise3_9.ipynb" target="_blank"
+      <li><a href="../../_sources/notebooks/chapter03/10-excercise3_10.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -314,7 +313,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>3.9 Galenshore分布</h1>
+    <h1>3.10 変数変換</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -326,10 +325,6 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a">a</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b">b</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c">c</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d">d</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e">e</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#galenshoregammagamma">参考: Galenshore分布とGamma分布と一般化Gamma分布</a></li>
 </ul>
             </nav>
         </div>
@@ -341,8 +336,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="galenshore">
-<h1>3.9 Galenshore分布<a class="headerlink" href="#galenshore" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>3.10 変数変換<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -357,71 +352,92 @@ document.write(`
 </div>
 </div>
 </div>
-<p><span class="math notranslate nohighlight">\(\text{Galenshore}(a, \theta)\)</span></p>
-<div class="math notranslate nohighlight" id="equation-eq-galenshore">
-<span class="eqno">(1)<a class="headerlink" href="#equation-eq-galenshore" title="Permalink to this equation">#</a></span>\[
-p(y) 
-= \frac{2}{\Gamma(a)}
-\theta ^{2a} y^{2a-1} e^{-\theta^2 y^2}
-\]</div>
 <section id="a">
 <h2>a<a class="headerlink" href="#a" title="Permalink to this heading">#</a></h2>
-<p>Galenshore分布の密度関数
-<span class="math notranslate nohighlight">\(p(y)\)</span> は指数型分布族の形 <span class="math notranslate nohighlight">\(\kappa(n_0, t_0) c(\phi)^{n_0} e^{n_0 t_0 \phi}\)</span> で書くことができる。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+p_{\theta}(\theta) = \frac{1}{B(a, b)} \theta^{a - 1} (1 - \theta)^{b - 1} \\
+\psi = g(\theta) = \log \left(\frac{\theta}{1-\theta}\right) = \text{logit}(\theta) \\
+h(\psi) = g^{-1}(\theta(\psi)) = \frac{1}{1 + e^{-\psi}}
+\end{cases}
+\end{split}\]</div>
+<p>ヤコビアンを計算する</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-h(y) &amp;=\frac{2 y^{2a - 1}}{\Gamma{a}} \\
-c(\phi) &amp;= \theta^{2a} \\
-t(y) &amp;= y^2 \\
-\phi &amp;= - \theta^2
+\frac{dh}{d\psi} 
+&amp;=\frac{
+    e^{-\psi}
+}{
+    (1 + e^{-\psi})^2
+} \\
+&amp;=\frac{
+    1
+}{
+    (1 + e^{-\psi})
+    (1 + e^{\psi})
+}
 \end{aligned}
 \end{split}\]</div>
-<p>本文p.58から、この事前分布は</p>
+<p><span class="math notranslate nohighlight">\(p_{\psi}\)</span> を計算する。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-p(\theta | n_0, t_0)
-&amp;= \kappa(n_0, t_0) \theta^{2a n_0} e^{- n_0 t_0 \theta^2}
+p_{\psi}(\psi)
+&amp;= p_{\theta}(\theta) \times \left | 
+\frac{dh}{d\psi} 
+\right| \\
+&amp;=
+\frac{1}{B(a, b)} \theta^{a - 1} (1 - \theta)^{b - 1}
+\times
+\frac{
+    1
+}{
+    (1 + e^{-\psi})
+    (1 + e^{\psi})
+}
 \\
-&amp;= \frac{2}{\Gamma(a n_0 + 1/2)} (n_0 t_0)^{a n_0 + 1/2} \theta^{2a n_0} e^{- n_0 t_0 \theta^2}
+&amp;=
+\frac{1}{B(a, b)} (1 + e^{-\psi})^{1 - a}  (1 + e^{\psi})^{1 - b} 
+\times
+\frac{
+    1
+}{
+    (1 + e^{-\psi})
+    (1 + e^{\psi})
+}
+\\
+&amp;=
+\frac{
+(1 + e^{-\psi})^{- a}  (1 + e^{\psi})^{- b} }{B(a, b)} 
+\\
+&amp;=
+\frac{1}{B(a, b)} \frac{e^{-b\psi}}{(1 + e^{-\psi})^{a + b}}
 \end{aligned}
 \end{split}\]</div>
-<p>となることがわかり、これはGalenshore分布 <span class="math notranslate nohighlight">\(\text{Galenshore} (a n_0 + 1/2, \sqrt{n_0 t_0})\)</span>である。</p>
-<p>いくつかのパラメータでGalenshore分布をプロットしてみる</p>
+<p>これは<a class="reference external" href="https://en.wikipedia.org/wiki/Generalized_logistic_distribution">一般化ロジスティック分布</a>である。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Galenshore分布の確率密度関数</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pdf_generalized_logistic</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span>
 
-
-<span class="nd">@np</span><span class="o">.</span><span class="n">vectorize</span>
-<span class="k">def</span> <span class="nf">pdf_galenshore</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="n">special</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
-        <span class="o">*</span> <span class="p">(</span><span class="n">theta</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">))</span>
-        <span class="o">*</span> <span class="p">(</span><span class="n">y</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">theta</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-    <span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">special</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="c1"># (a, theta)</span>
-    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-<span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 
-<span class="n">df_3_9</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="n">df_3_9</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
-    <span class="n">df_3_9</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">, theta = </span><span class="si">{</span><span class="n">theta</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pdf_galenshore</span><span class="p">(</span><span class="n">df_3_9</span><span class="p">[</span><span class="s2">&quot;theta&quot;</span><span class="p">],</span> <span class="n">a</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+<span class="n">df_a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">df_a</span><span class="p">[</span><span class="s2">&quot;psi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">psi</span>
+<span class="n">df_a</span><span class="p">[</span><span class="s2">&quot;proba&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pdf_generalized_logistic</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
-<span class="n">df_3_9</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">df_a</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -444,53 +460,35 @@ p(\theta | n_0, t_0)
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>theta</th>
-      <th>a = 1, theta = 1</th>
-      <th>a = 1, theta = 2</th>
-      <th>a = 2, theta = 1</th>
-      <th>a = 2, theta = 2</th>
+      <th>psi</th>
+      <th>proba</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>-10.000000</td>
+      <td>0.000045</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.040404</td>
-      <td>0.080676</td>
-      <td>0.321129</td>
-      <td>0.000132</td>
-      <td>0.002097</td>
+      <td>-9.797980</td>
+      <td>0.000056</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.080808</td>
-      <td>0.160564</td>
-      <td>0.629798</td>
-      <td>0.001048</td>
-      <td>0.016450</td>
+      <td>-9.595960</td>
+      <td>0.000068</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.121212</td>
-      <td>0.238888</td>
-      <td>0.914351</td>
-      <td>0.003510</td>
-      <td>0.053736</td>
+      <td>-9.393939</td>
+      <td>0.000083</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.161616</td>
-      <td>0.314899</td>
-      <td>1.164662</td>
-      <td>0.008225</td>
-      <td>0.121683</td>
+      <td>-9.191919</td>
+      <td>0.000102</td>
     </tr>
   </tbody>
 </table>
@@ -499,186 +497,152 @@ p(\theta | n_0, t_0)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
-    <span class="n">df_3_9</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;theta&quot;</span><span class="p">),</span>
+    <span class="n">df_a</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;psi&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;proba&quot;</span><span class="p">,</span>
     <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">,</span>
-    <span class="n">dashes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">aspect</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;$\psi$&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;$p_{\psi}(\psi)$&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Probabiliti Density Function (a)&quot;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/40922ac9073c7a005cac870e54377c17ffa25b39229c2b342b6675a0c20a915f.png" src="../../_images/40922ac9073c7a005cac870e54377c17ffa25b39229c2b342b6675a0c20a915f.png" />
+<img alt="../../_images/7115868e38a3b03c9c2356f4036fa8e13d32d2dee6a1cf731aec0686600dd693.png" src="../../_images/7115868e38a3b03c9c2356f4036fa8e13d32d2dee6a1cf731aec0686600dd693.png" />
 </div>
 </div>
 </section>
 <section id="b">
 <h2>b<a class="headerlink" href="#b" title="Permalink to this heading">#</a></h2>
-<p>本文p.53から、事後分布は <span class="math notranslate nohighlight">\(\text{Galenshore}(a(n_0 + n) + 1/2, \sqrt{n_0 t_0 + n \bar{t}})\)</span>
-であり、確率密度関数は</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-p(\theta | y_1, \cdots, y_n)
-&amp;= p(\theta | n_0 + n, (n_0 t_0 + n \bar{t})/(n_0 + n)) \\
-&amp;= \frac{2}{\Gamma(a (n_0 + n) + 1/2)} (n_0 t_0 + n \bar{t})^{a(n_0+n) + 1/2} \theta^{2a (n_0 + n)} e^{- (n_0 t_0 + n \bar{t}) \theta^2}
-\\ \\
-&amp; \qquad \text{where} \quad \bar{t} = \sum _i y^{2} _{i}
-\end{aligned}
-\end{split}\]</div>
-<p>となる。</p>
-</section>
-<section id="c">
-<h2>c<a class="headerlink" href="#c" title="Permalink to this heading">#</a></h2>
-<p>比を計算する。</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-p(\theta _a | y_1, \cdots, y_n) / p(\theta _b | y_1, \cdots, y_n)
-&amp;= \frac{
-    \theta^{2a(n_0 + n)}_{a} e^{-(n_0 t_0 + n \bar{t}) \theta^{2}_{a}}
-}{
-    \theta^{2a(n_0 + n)}_{b} e^{-(n_0 t_0 + n \bar{t}) \theta^{2}_{b}}
-} \\
-&amp;= \left( 
-    \frac{\theta_{a}}{\theta_{b}}
-\right) ^{2a(n_0 + n)}
-\exp\left\{{-(n_0 t_0 + n \bar{t}) (\theta^{2}_{a}-\theta^{2}_{b}) }
-\right\}
-\end{aligned}
-\end{split}\]</div>
-<p>これは <span class="math notranslate nohighlight">\(n\bar{t} = \sum_{i} y^{2}_{i}\)</span> の関数であるから、十分統計量は <span class="math notranslate nohighlight">\(\sum_{i} y^{2}_{i}\)</span> である。</p>
-</section>
-<section id="d">
-<h2>d<a class="headerlink" href="#d" title="Permalink to this heading">#</a></h2>
-<p><span class="math notranslate nohighlight">\(\theta\)</span> の事後分布は <span class="math notranslate nohighlight">\(\text{Galenshore}(a(n_0 + n) + 1/2, \sqrt{n_0 t_0 + n \bar{t}})\)</span>
-であるから、</p>
-<div class="math notranslate nohighlight">
-\[
-E[\theta|y_1, \cdots, y_n]
-= \frac{
-    \Gamma \left( a(n_0 + n) + 1\right)
-}{
-    \Gamma \left( a(n_0 + n) + 1/2 \right)
-    \sqrt{n_0 t_0 + n \bar{t}}
-}
-\]</div>
-<p>となる。</p>
-</section>
-<section id="e">
-<h2>e<a class="headerlink" href="#e" title="Permalink to this heading">#</a></h2>
-<p>予測分布は以下のように計算できる。</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-p(\tilde{y}|y_1, \cdots, y_n)
-% 1個目の等号
-&amp;= \int d\theta ~ p(\tilde{y}| \theta) ~ p(\theta | y_1, \cdots, y_n)
-\\
-% 2個目の等号
-&amp;= \int d\theta
-\frac{2}{\Gamma(a)}
-~ \theta ^{2a} \tilde{y}^{2a-1} e^{-\theta^2 \tilde{y}^2}
-\\
-&amp; \qquad \times \frac{2}{\Gamma(a (n_0 + n) + 1/2)} (n_0 t_0 + n \bar{t})^{a(n_0+n) + 1/2} \theta^{2a (n_0 + n)} e^{- (n_0 t_0 + n \bar{t}) \theta^2}
-\\
-% 3個目の等号
-&amp;= \int d\theta 
-\frac{4}{\Gamma(a)\Gamma(a(n_0 + n) + 1/2)}
-(n_0 t_0 + n \bar{t} + \tilde{y}^2)^{a(n_0 + n + 1) + 1/2} 
-\theta ^{2a(n_0 + n + 1)}
-e^{-(n_0 t_0 + n \bar{t} + \tilde{y}^2) \theta^2}
-\\
-% 4個目の等号
-&amp;=\frac{2 \Gamma(a(n_0 + n + 1) + 1/2)}{\Gamma(a)\Gamma(a(n_0 + n) + 1/2)}
-\frac{
-    (n_0 t_0 + n \bar{t})^{a(n_0 + n) + 1/2} 
-}{
-    (n_0 t_0 + n \bar{t} + \tilde{y}^2)^{a(n_0 + n + 1) + 1/2} 
-}
-\tilde{y}^{2a-1}
-\\
-&amp; \qquad \times
-\int d \theta
-\underbrace{
-    \frac{2}{\Gamma(a(n_0 + n + 1) + 1/2)}
-    (n_0 t_0 + n \bar{t} + \tilde{y}^2)^{a(n_0 + n + 1) + 1/2} 
-    \theta ^{2a(n_0 + n + 1)}
-    e^{-(n_0 t_0 + n \bar{t} + \tilde{y}^2) \theta^2}
-}_{\text{Galenshore分布の密度関数だから積分したら1}}
-\\
-% 5個目の等号
-&amp;=
-\frac{2}{
-    B(a, a(n_0 + n) + 1/2)
-}
-\frac{
-    (n_0 t_0 + n \bar{t})^{a(n_0 + n) + 1/2} 
-}{
-    (n_0 t_0 + n \bar{t} + \tilde{y}^2)^{a(n_0 + n + 1) + 1/2} 
-}
-\tilde{y}^{2a-1}
-\\
-% 6個目の等号
-&amp;=
-\frac{
-    2
-    \left( 
-        \frac{\tilde{y}}{{\sqrt{n_0 t_0 + n \bar{t}}}} 
-        \right) ^{2a -1}
-    \left[ 1 + \left( \frac{\tilde{y}}{{\sqrt{n_0 t_0 + n \bar{t}}}}\right) ^ {2} \right]
-    ^{-a -[a(n_0 + n) + 1/2]}
-}{
-    \sqrt{n_0 t_0 + n \bar{t}}
-    B(a, a(n_0 + n) + 1/2)
-}
-\end{aligned}
-\end{split}\]</div>
-<p>これはパラメータが</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{cases}
-\alpha = a \\
-\beta = a(n_0 + n) + 1/2 \\
-p = 2 \\
-q = \sqrt{n_0 t_0 + n \bar{t}}
+p_{\theta}(\theta) = \frac{b^a}{\Gamma(a)} \theta^{a-1} e^{-b\theta} \\
+\psi = g(\theta) = \log \theta \\
+h(\psi) = g^{-1}(\theta(\psi)) = e^{\psi}
 \end{cases}
 \end{split}\]</div>
-<p>の<a class="reference external" href="https://ja.wikipedia.org/wiki/%E7%AC%AC2%E7%A8%AE%E3%83%99%E3%83%BC%E3%82%BF%E5%88%86%E5%B8%83#%E4%B8%80%E8%88%AC%E5%8C%96%E7%AC%AC2%E7%A8%AE%E3%83%99%E3%83%BC%E3%82%BF%E5%88%86%E5%B8%83">一般化第2種ベータ分布</a>である。</p>
-</section>
-<section id="galenshoregammagamma">
-<h2>参考: Galenshore分布とGamma分布と一般化Gamma分布<a class="headerlink" href="#galenshoregammagamma" title="Permalink to this heading">#</a></h2>
-<p><span class="math notranslate nohighlight">\(\text{Galenshore}(a, \theta)\)</span> の密度関数 <a class="reference internal" href="#equation-eq-galenshore">(1)</a> を <span class="math notranslate nohighlight">\(y^2 = z\)</span> と変数変換してみる。<br />
-変数変換した後の変数 <span class="math notranslate nohighlight">\(z\)</span> の密度関数 <span class="math notranslate nohighlight">\(p_{Z}(z)\)</span> は</p>
+<p>ヤコビアンを計算する</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dh}{d\psi} 
+=
+e^{\psi}
+\]</div>
+<p><span class="math notranslate nohighlight">\(p_{\psi}\)</span> を計算する。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-p_{Z}(z)
-&amp;= p(y(z)) \left|\frac{dy}{dz}\right|
+p_{\psi}(\psi)
+&amp;=
+\frac{b^a}{\Gamma(a)} \theta^{a-1} e^{-b\theta} 
+\times 
+e^{\psi}
 \\
-&amp;= 
-\frac{2}{\Gamma(a)}
-\theta ^{2a} z^{a-1/2} e^{-\theta^2 z}
-\times  \frac{1}{2} z^{-1/2}
+&amp;=
+\frac{b^a}{\Gamma(a)} e^{\psi(a-1)} e^{-be^\psi} 
+\times 
+e^{\psi}
 \\
-&amp;= 
-\frac{(\theta^2) ^{a}}{\Gamma(a)}
- z^{a-1} e^{-\theta^2 z}
+&amp;=
+\frac{b^a}{\Gamma(a)} e^{a\psi} e^{-be^\psi} 
 \end{aligned}
 \end{split}\]</div>
-<p>となる。これはパラメータ <span class="math notranslate nohighlight">\(a=a, b=\theta^2\)</span> のGamma分布 <span class="math notranslate nohighlight">\(\text{Gamma} (a, \theta^2)\)</span> である。</p>
-<p>確率変数 <span class="math notranslate nohighlight">\(X\)</span> が<a class="reference external" href="https://en.wikipedia.org/wiki/Generalized_gamma_distribution">一般化Gamma分布</a>
-<span class="math notranslate nohighlight">\(\text{GG}(a, d, p)\)</span>に従うとき、密度関数は</p>
-<div class="math notranslate nohighlight">
-\[
-p(x) = \frac{
-    (p/a^d)x^{d-1}e^{-(x/a)^p}
-}{
-    \Gamma(d/p)
-}
-\]</div>
-<p>で表される。ここで、<span class="math notranslate nohighlight">\(a, d, p &gt; 0\)</span> がパラメータである。
-<a class="reference internal" href="#equation-eq-galenshore">(1)</a> と見比べると <span class="math notranslate nohighlight">\(\text{Galenshore}(a, \theta)\)</span> = <span class="math notranslate nohighlight">\(\text{GG}(1/\theta, 2a, 2)\)</span> であることがわかる。</p>
+<p>これは<a class="reference external" href="https://www.math.wm.edu/~leemis/chart/UDR/PDFs/Loggamma.pdf">Log-Gamma分布</a>である。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pdf_log_gamma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">b</span><span class="o">**</span><span class="n">a</span> <span class="o">/</span> <span class="n">special</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">df_b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">df_b</span><span class="p">[</span><span class="s2">&quot;psi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">psi</span>
+<span class="n">df_b</span><span class="p">[</span><span class="s2">&quot;proba&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pdf_log_gamma</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="n">df_b</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>psi</th>
+      <th>proba</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-10.000000</td>
+      <td>0.000045</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-9.797980</td>
+      <td>0.000056</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-9.595960</td>
+      <td>0.000068</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-9.393939</td>
+      <td>0.000083</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-9.191919</td>
+      <td>0.000102</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">df_b</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;psi&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;proba&quot;</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;$\psi$&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;$p_{\psi}(\psi)$&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Probabiliti Density Function (b)&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f54d27708cbb061a78730ce7d4eb2a8a14dde62bcb0df6026f3eeecf96ef54ab.png" src="../../_images/f54d27708cbb061a78730ce7d4eb2a8a14dde62bcb0df6026f3eeecf96ef54ab.png" />
+</div>
+</div>
 </section>
 </section>
 
@@ -713,22 +677,13 @@ p(x) = \frac{
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="08-excercise3_8.html"
+       href="09-excercise3_9.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">3.8 コイン</p>
+        <p class="prev-next-title">3.9 Galenshore分布</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="10-excercise3_10.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">3.10 変数変換</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -747,10 +702,6 @@ p(x) = \frac{
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a">a</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b">b</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c">c</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d">d</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e">e</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#galenshoregammagamma">参考: Galenshore分布とGamma分布と一般化Gamma分布</a></li>
 </ul>
   </nav></div>
 
