@@ -2,8 +2,14 @@ title: 標準ベイズ統計学 演習問題
 author: Saviour
 exclude_patterns: [jupyterbook/_build, README.md]
 
+repository:
+  url: https://github.com/savioursho/a-first-cource-in-baysian-statistical-methods
+  branch: gh-pages
+
 html:
   favicon: jupyterbook/favicon.ico
+  use_repository_button: true
+  use_issues_button: true
 
 execute:
   execute_notebooks: cache
