@@ -23,7 +23,9 @@
 				"ms-python.python",
 				"ms-toolsai.jupyter",
 				"VisualStudioExptTeam.vscodeintellicode",
-				"ms-python.black-formatter"
+				"ms-python.black-formatter",
+				"ritwickdey.LiveServer",
+				"ms-python.isort"
 			]
 		}
 	}
