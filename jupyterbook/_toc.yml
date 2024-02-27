@@ -21,3 +21,4 @@ chapters:
 - file: notebooks/chapter04/00-chapter04
   sections:
   - file: notebooks/chapter04/01-excercise4_1
+  - file: notebooks/chapter04/02-excercise4_2
