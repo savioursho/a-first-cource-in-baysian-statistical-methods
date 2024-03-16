@@ -1,0 +1,1121 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>4.2 腫瘍数の比較 &#8212; 標準ベイズ統計学 演習問題</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/chapter04/02-excercise4_2';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4.3 事後予測チェック" href="03-excercise4_3.html" />
+    <link rel="prev" title="4.1 事後比較" href="01-excercise4_1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">標準ベイズ統計学 演習問題</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    A First Course in Bayesian Statistical Methods
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapter03/00-chapter03.html">第3章 二項モデルとポアソンモデル</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapter03/01-excercise3_1.html">3.1 標本調査</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter03/02-excercise3_2.html">3.2 感度分析</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter03/03-excercise3_3.html">3.3 腫瘍数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter03/04-excercise3_4.html">3.4 ベータ事前分布の混合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter03/05-excercise3_5.html">3.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter03/06-excercise3_6.html">3.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter03/07-excercise3_7.html">3.7 事後予測</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter03/08-excercise3_8.html">3.8 コイン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter03/09-excercise3_9.html">3.9 Galenshore分布</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter03/10-excercise3_10.html">3.10 変数変換</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter03/11-excercise3_11.html">3.11 ジェフリーズ事前分布</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapter03/12-excercise3_12.html">3.12 非正則なジェフリーズ事前分布</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="00-chapter04.html">第4章 モンテカルロ近似</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01-excercise4_1.html">4.1 事後比較</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.2 腫瘍数の比較</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-excercise4_3.html">4.3 事後予測チェック</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/savioursho/a-first-cource-in-baysian-statistical-methods" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/savioursho/a-first-cource-in-baysian-statistical-methods/issues/new?title=Issue%20on%20page%20%2Fnotebooks/chapter04/02-excercise4_2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/chapter04/02-excercise4_2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>4.2 腫瘍数の比較</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">インポート・設定</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a">a</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b">b</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c">c</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>4.2 腫瘍数の比較<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<section id="id2">
+<h2>インポート・設定<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dataclasses</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Number</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span><span class="p">,</span> <span class="n">special</span><span class="p">,</span> <span class="n">stats</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">()</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="n">SEED</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="a">
+<h2>a<a class="headerlink" href="#a" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="k">class</span> <span class="nc">CountData</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;カウントデータを格納するクラス&quot;&quot;&quot;</span>
+
+    <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A系統、B系統の腫瘍数の観察データ</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># データ定義</span>
+<span class="n">y_a</span> <span class="o">=</span> <span class="n">CountData</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">]))</span>
+<span class="n">y_b</span> <span class="o">=</span> <span class="n">CountData</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">]))</span>
+
+<span class="c1"># 可視化</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="n">y_a</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="n">y_b</span><span class="o">.</span><span class="n">data</span><span class="p">}</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/786441ef6976919f801a12c2696029d482a6ca205b36b28a5951e023ecbf7bcc.png" src="../../_images/786441ef6976919f801a12c2696029d482a6ca205b36b28a5951e023ecbf7bcc.png" />
+</div>
+</div>
+<p>与えられた事前分布</p>
+<div class="math notranslate nohighlight">
+\[
+\theta _A \sim \text{gamma}(120, 10), \quad
+\theta _B \sim \text{gamma}(12, 1), \quad
+p(\theta _A, \theta _B) = p(\theta _A) \times p(\theta _B)
+\]</div>
+<p>から事後分布を求める。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="k">class</span> <span class="nc">GammaDist</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;ガンマ分布のパラメータを格納するクラス&quot;&quot;&quot;</span>
+
+    <span class="n">a</span><span class="p">:</span> <span class="n">Number</span>
+    <span class="n">b</span><span class="p">:</span> <span class="n">Number</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rv</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_poisson_model_posterior</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">a_prior</span><span class="p">,</span> <span class="n">b_prior</span><span class="p">):</span>
+
+    <span class="c1"># 事後分布のパラメータ</span>
+    <span class="n">a_posterior</span> <span class="o">=</span> <span class="n">a_prior</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">b_posterior</span> <span class="o">=</span> <span class="n">b_prior</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">GammaDist</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a_posterior</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b_posterior</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">posterior_A</span> <span class="o">=</span> <span class="n">get_poisson_model_posterior</span><span class="p">(</span><span class="n">y_a</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">a_prior</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">b_prior</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">posterior_B</span> <span class="o">=</span> <span class="n">get_poisson_model_posterior</span><span class="p">(</span><span class="n">y_b</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">a_prior</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">b_prior</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Posterior of A:&quot;</span><span class="p">,</span> <span class="n">posterior_A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Posterior of B:&quot;</span><span class="p">,</span> <span class="n">posterior_B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Posterior of A: GammaDist(a=237, b=20)
+Posterior of B: GammaDist(a=125, b=14)
+</pre></div>
+</div>
+</div>
+</div>
+<p>事後分布からサンプリングを行い、 <span class="math notranslate nohighlight">\(Pr(\theta _A &lt; \theta _B | y_A, y_B)\)</span> の近似値を求める。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">df_sample</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;thetaA&quot;</span><span class="p">:</span> <span class="n">posterior_A</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="p">),</span>
+        <span class="s2">&quot;thetaB&quot;</span><span class="p">:</span> <span class="n">posterior_B</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">df_sample</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>thetaA</th>
+      <th>thetaB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>5000.000000</td>
+      <td>5000.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>11.837982</td>
+      <td>8.915820</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.752776</td>
+      <td>0.781226</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>9.411076</td>
+      <td>6.464044</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>11.323739</td>
+      <td>8.379315</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>11.807916</td>
+      <td>8.878416</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>12.328013</td>
+      <td>9.420318</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>15.005056</td>
+      <td>12.293829</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>サンプリングした値の分布を可視化してみる</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 事後分布の可視化</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span>
+    <span class="n">df_sample</span><span class="p">,</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Distribution of $\theta_A$ and $\theta_B$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1e9b9bf35f5db269fb2be8d81addedcdbbe7df371f830721ae675780de5e0e6b.png" src="../../_images/1e9b9bf35f5db269fb2be8d81addedcdbbe7df371f830721ae675780de5e0e6b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_difference_of_variables</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">var1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">var2</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">):</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">var1</span><span class="p">]</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">var2</span><span class="p">])</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">df_diff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">df_diff</span><span class="p">[</span><span class="s2">&quot;negative&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">diff</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">df_diff</span><span class="p">[</span><span class="s2">&quot;positive&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">diff</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">df_diff</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">title</span> <span class="ow">or</span> <span class="sa">f</span><span class="s2">&quot;Ditsribution of </span><span class="si">{</span><span class="n">var1</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">var2</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
+
+
+<span class="n">plot_difference_of_variables</span><span class="p">(</span><span class="n">df_sample</span><span class="p">,</span> <span class="s2">&quot;thetaB&quot;</span><span class="p">,</span> <span class="s2">&quot;thetaA&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/50660f82330ed66fd0f6170e415d7bbff84971c3e64089f10b34633e57c51d4a.png" src="../../_images/50660f82330ed66fd0f6170e415d7bbff84971c3e64089f10b34633e57c51d4a.png" />
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(Pr(\theta _A &lt; \theta _B | y_A, y_B) \approx 0\)</span> となる。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_sample</span><span class="p">[</span><span class="s2">&quot;thetaA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="n">df_sample</span><span class="p">[</span><span class="s2">&quot;thetaB&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="b">
+<h2>b<a class="headerlink" href="#b" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_proba_by_mc</span><span class="p">(</span><span class="n">n0</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="c1"># 事後分布</span>
+    <span class="n">posterior_A</span> <span class="o">=</span> <span class="n">get_poisson_model_posterior</span><span class="p">(</span><span class="n">y_a</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">a_prior</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">b_prior</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">posterior_B</span> <span class="o">=</span> <span class="n">get_poisson_model_posterior</span><span class="p">(</span><span class="n">y_b</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">a_prior</span><span class="o">=</span><span class="mi">12</span> <span class="o">*</span> <span class="n">n0</span><span class="p">,</span> <span class="n">b_prior</span><span class="o">=</span><span class="n">n0</span><span class="p">)</span>
+
+    <span class="c1"># モンテカルロサンプリング</span>
+    <span class="c1"># thetaAとthetaBは独立なので、thetaAのサンプリング結果は使いまわしても良いが、ここでは毎回サンプリングしている。</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="mi">5000</span>
+    <span class="n">df_sample</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;thetaA&quot;</span><span class="p">:</span> <span class="n">posterior_A</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="p">),</span>
+            <span class="s2">&quot;thetaB&quot;</span><span class="p">:</span> <span class="n">posterior_B</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="p">),</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="c1"># thetaB &lt; thetaAの確率の近似値</span>
+    <span class="n">proba</span> <span class="o">=</span> <span class="n">df_sample</span><span class="p">[</span><span class="s2">&quot;thetaA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="n">df_sample</span><span class="p">[</span><span class="s2">&quot;thetaB&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">proba</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># n0 = 1 ~ 10000でサンプリングする</span>
+<span class="n">df_proba</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;n0&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">30</span><span class="p">))})</span>
+<span class="n">df_proba</span><span class="p">[</span><span class="s2">&quot;proba&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_proba</span><span class="p">[</span><span class="s2">&quot;n0&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_proba_by_mc</span><span class="p">)</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">df_proba</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;n0&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;proba&quot;</span><span class="p">,</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xscale</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$n_0 ~ v.s. ~ Pr(\theta_A &lt; \theta_B| y_A, y_B)$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dddb1ec261d4ca0973df3351f90fb99ba7612aad134908eb2c267d641a98c9dc.png" src="../../_images/dddb1ec261d4ca0973df3351f90fb99ba7612aad134908eb2c267d641a98c9dc.png" />
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(\theta_B\)</span> の事後分布は <span class="math notranslate nohighlight">\(Gamma(a=113 + 12n_0, b=13 + n_0)\)</span>
+であり、期待値、分散はそれぞれ</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+E[\theta_B | y_A, y_B] &amp;= \frac{113 + 12n_0}{13 + n_0} &amp;&amp; \rightarrow 12 &amp;&amp; (n_0 \rightarrow \infty) \\
+V[\theta_B | y_A, y_B] &amp;= \frac{113 + 12n_0}{(13 + n_0)^2} &amp;&amp;
+\rightarrow 0 &amp;&amp;(n_0 \rightarrow \infty)
+\end{aligned}
+\end{split}\]</div>
+<p>となる。</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n_0 = 10\)</span> 付近までは確率はほぼゼロである。</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(n_0\)</span>が小さいときは事前分布よりデータを重視している。</p></li>
+<li><p>Aの事後平均(237 / 20 = 11.85)よりBの標本平均(~8.7)が小さい。</p></li>
+<li><p>A, Bの事後標準偏差はともに1未満であり、これは事後平均の差より小さい。</p></li>
+<li><p>以上の理由から<span class="math notranslate nohighlight">\(n_0\)</span>が小さいときは<span class="math notranslate nohighlight">\(\theta_B\)</span>が大きい確率はほほゼロになる。</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(n_0 = 100\)</span> 付近で確率が0.3近くなり、<span class="math notranslate nohighlight">\(n_0 -&gt; \infty\)</span> で0.6付近に収束する 。</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(n_0\)</span>が大きいときはデータより事前分布を重視している。</p></li>
+<li><p>Aの事後平均(237 / 20 = 11.85)よりBの事前平均(=12)が大きい。</p></li>
+<li><p>以上の理由から<span class="math notranslate nohighlight">\(n_0\)</span>が大きいときは<span class="math notranslate nohighlight">\(\theta_B\)</span>が大きい確率が0.5を超える。</p></li>
+<li><p>特に <span class="math notranslate nohighlight">\(n_0 -&gt; \infty\)</span> では <span class="math notranslate nohighlight">\(\theta_B\)</span> の分布は <span class="math notranslate nohighlight">\(\theta_B=12\)</span> に局在する(分散→0だから)。そのため、 <span class="math notranslate nohighlight">\(Pr(\theta _A &lt; \theta _B | y_A, y_B) \rightarrow Pr(\theta _A &lt; 12 | y_A, y_B)\)</span> となる。</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pr(thetaA &lt; 12 | yA, yB) ~ 0.6となる</span>
+<span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">posterior_A</span><span class="o">.</span><span class="n">rv</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.585
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="c">
+<h2>c<a class="headerlink" href="#c" title="Permalink to this heading">#</a></h2>
+<p>事後分布が <span class="math notranslate nohighlight">\(Gamma(a, b)\)</span> のときの事後予測分布は負の二項分布 <span class="math notranslate nohighlight">\(NB(n=a, p=\frac{1}{1 + b})\)</span> となる。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="k">class</span> <span class="nc">NegativeBionmialDist</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;負の二項分布のパラメータを格納するクラス&quot;&quot;&quot;</span>
+
+    <span class="n">n</span><span class="p">:</span> <span class="n">Number</span>
+    <span class="n">p</span><span class="p">:</span> <span class="n">Number</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># scipyでのpのパラメトライズに注意！</span>
+        <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">nbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rv</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_negative_binomial_posterior_predictive_distribution</span><span class="p">(</span>
+    <span class="n">a_posterior</span><span class="p">,</span>
+    <span class="n">b_posterior</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="c1"># 事後予測分布のパラメータ</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">a_posterior</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">b_posterior</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">NegativeBionmialDist</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">posterior_predictive_A</span> <span class="o">=</span> <span class="n">get_negative_binomial_posterior_predictive_distribution</span><span class="p">(</span>
+    <span class="n">posterior_A</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">posterior_A</span><span class="o">.</span><span class="n">b</span>
+<span class="p">)</span>
+<span class="n">posterior_predictive_B</span> <span class="o">=</span> <span class="n">get_negative_binomial_posterior_predictive_distribution</span><span class="p">(</span>
+    <span class="n">posterior_B</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">posterior_B</span><span class="o">.</span><span class="n">b</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Posterior predictive distribution of A:&quot;</span><span class="p">,</span> <span class="n">posterior_predictive_A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Posterior predictive distribution of B:&quot;</span><span class="p">,</span> <span class="n">posterior_predictive_B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Posterior predictive distribution of A: NegativeBionmialDist(n=237, p=0.047619047619047616)
+Posterior predictive distribution of B: NegativeBionmialDist(n=125, p=0.06666666666666667)
+</pre></div>
+</div>
+</div>
+</div>
+<p>事後分布からサンプリングを行い、 <span class="math notranslate nohighlight">\(Pr(\tilde{Y} _A &lt; \tilde{Y} _B | y_A, y_B)\)</span> の近似値を求める。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">df_predictive_sample</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;YA&quot;</span><span class="p">:</span> <span class="n">posterior_predictive_A</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="p">),</span>
+        <span class="s2">&quot;YB&quot;</span><span class="p">:</span> <span class="n">posterior_predictive_B</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">df_predictive_sample</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>YA</th>
+      <th>YB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>5000.000000</td>
+      <td>5000.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>11.875400</td>
+      <td>8.835800</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>3.494384</td>
+      <td>3.071339</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>2.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>9.000000</td>
+      <td>7.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>12.000000</td>
+      <td>9.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>14.000000</td>
+      <td>11.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>25.000000</td>
+      <td>22.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>サンプリングした値の分布を可視化してみる</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 事後分布の可視化</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span>
+    <span class="n">df_predictive_sample</span><span class="p">,</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Distribution of $\tilde</span><span class="si">{Y}</span><span class="s2">_A$ and $\tilde</span><span class="si">{Y}</span><span class="s2">_B$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6d31438b236e2ff656605edbc94f8dff9b82c6565906fa7f478b313a1eb7a575.png" src="../../_images/6d31438b236e2ff656605edbc94f8dff9b82c6565906fa7f478b313a1eb7a575.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_difference_of_variables</span><span class="p">(</span><span class="n">df_predictive_sample</span><span class="p">,</span> <span class="s2">&quot;YB&quot;</span><span class="p">,</span> <span class="s2">&quot;YA&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/36ccdfaafd743634f5012d9498a4ca54a1aa1c7fdf09efc86bd0ca36fefcaf48.png" src="../../_images/36ccdfaafd743634f5012d9498a4ca54a1aa1c7fdf09efc86bd0ca36fefcaf48.png" />
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(Pr(\tilde{Y} _A &lt; \tilde{Y} _B | y_A, y_B) \approx 0.22\)</span> となる。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_predictive_sample</span><span class="p">[</span><span class="s2">&quot;YA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="n">df_predictive_sample</span><span class="p">[</span><span class="s2">&quot;YB&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2208
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_proba_by_mc</span><span class="p">(</span><span class="n">n0</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="c1"># 事後分布</span>
+    <span class="n">posterior_A</span> <span class="o">=</span> <span class="n">get_poisson_model_posterior</span><span class="p">(</span><span class="n">y_a</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">a_prior</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">b_prior</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">posterior_B</span> <span class="o">=</span> <span class="n">get_poisson_model_posterior</span><span class="p">(</span><span class="n">y_b</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">a_prior</span><span class="o">=</span><span class="mi">12</span> <span class="o">*</span> <span class="n">n0</span><span class="p">,</span> <span class="n">b_prior</span><span class="o">=</span><span class="n">n0</span><span class="p">)</span>
+
+    <span class="c1"># 事後予測分布</span>
+    <span class="n">posterior_predictive_A</span> <span class="o">=</span> <span class="n">get_negative_binomial_posterior_predictive_distribution</span><span class="p">(</span>
+        <span class="n">posterior_A</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">posterior_A</span><span class="o">.</span><span class="n">b</span>
+    <span class="p">)</span>
+    <span class="n">posterior_predictive_B</span> <span class="o">=</span> <span class="n">get_negative_binomial_posterior_predictive_distribution</span><span class="p">(</span>
+        <span class="n">posterior_B</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">posterior_B</span><span class="o">.</span><span class="n">b</span>
+    <span class="p">)</span>
+
+    <span class="c1"># モンテカルロサンプリング</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="mi">5000</span>
+
+    <span class="n">df_predictive_sample</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;YA&quot;</span><span class="p">:</span> <span class="n">posterior_predictive_A</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="p">),</span>
+            <span class="s2">&quot;YB&quot;</span><span class="p">:</span> <span class="n">posterior_predictive_B</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="p">),</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="c1"># thetaB &lt; thetaAの確率の近似値</span>
+    <span class="n">proba</span> <span class="o">=</span> <span class="n">df_predictive_sample</span><span class="p">[</span><span class="s2">&quot;YA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="n">df_predictive_sample</span><span class="p">[</span><span class="s2">&quot;YB&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">proba</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># n0 = 1 ~ 10000でサンプリングする</span>
+<span class="n">df_proba</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;n0&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">30</span><span class="p">))})</span>
+<span class="n">df_proba</span><span class="p">[</span><span class="s2">&quot;proba&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_proba</span><span class="p">[</span><span class="s2">&quot;n0&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_proba_by_mc</span><span class="p">)</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">df_proba</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;n0&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;proba&quot;</span><span class="p">,</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xscale</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$n_0 ~ v.s. ~ Pr(\tilde</span><span class="si">{Y}</span><span class="s2">_A &lt; \tilde</span><span class="si">{Y}</span><span class="s2">_B| y_A, y_B)$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/116357289511b6ac19e3aed5841d8bd2dc7444a3b412ed0a984a9283156273f2.png" src="../../_images/116357289511b6ac19e3aed5841d8bd2dc7444a3b412ed0a984a9283156273f2.png" />
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(\tilde{Y}_B\)</span> の事後分布は <span class="math notranslate nohighlight">\(NB(n=113 + 12n_0, p=\frac{1}{1 + 13 + n_0})\)</span>
+であり、期待値、分散はそれぞれ</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+E[\tilde{Y}_B | y_A, y_B] &amp;= \frac{113 + 12n_0}{13 + n_0} &amp;&amp; \rightarrow 12 &amp;&amp; (n_0 \rightarrow \infty) \\
+V[\tilde{Y}_B | y_A, y_B] &amp;= \frac{113 + 12n_0}{13 + n_0} \times \frac{1 + 13 + n_0}{13 + n_0}&amp;&amp;
+\rightarrow 12 &amp;&amp;(n_0 \rightarrow \infty)
+\end{aligned}
+\end{split}\]</div>
+<p>となる。</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Pr(\theta _A &lt; \theta _B | y_A, y_B) = 0\)</span> となっていた領域でも <span class="math notranslate nohighlight">\(Pr(\tilde{Y}_A &lt; \tilde{Y}_B| y_A, y_B)\)</span> は正の値を持つ。</p></li>
+<li><p><span class="math notranslate nohighlight">\(Pr(\theta _A &lt; \theta _B | y_A, y_B)\)</span> は <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span> で <span class="math notranslate nohighlight">\(0.6\)</span>付近に収束していたが、 <span class="math notranslate nohighlight">\(Pr(\tilde{Y}_A &lt; \tilde{Y}_B| y_A, y_B)\)</span> <span class="math notranslate nohighlight">\(0.45\)</span>付近に収束する。</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span> で <span class="math notranslate nohighlight">\(\theta_B\)</span> は<span class="math notranslate nohighlight">\(\theta_B=12\)</span> に局在するため、<span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span> で <span class="math notranslate nohighlight">\(\tilde{Y}_B\)</span> の分布は <span class="math notranslate nohighlight">\(Poisson(\lambda=12)\)</span> となる。</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># X ~ Poisson(12)</span>
+<span class="c1"># Pr(YA - X | yA, yB) ~ 0.47となる</span>
+
+<span class="n">size</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="p">(</span>
+    <span class="n">posterior_predictive_A</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4684
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks/chapter04"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01-excercise4_1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">4.1 事後比較</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03-excercise4_3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">4.3 事後予測チェック</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">インポート・設定</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a">a</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b">b</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c">c</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Saviour
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
