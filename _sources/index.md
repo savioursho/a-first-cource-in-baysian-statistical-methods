@@ -3,3 +3,8 @@
 
 ```{tableofcontents}
 ```
+
+
+## Links
+
+- [Book](https://pdhoff.github.io/book/)
